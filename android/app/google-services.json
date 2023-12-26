@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "125362369523",
+    "project_id": "plan-and-go-850e0",
+    "storage_bucket": "plan-and-go-850e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125362369523:android:00a703b03de71b75f39886",
+        "android_client_info": {
+          "package_name": "com.example.planner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125362369523-le1i0m87edc4d43ngjse4kdtban9gsif.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.planner",
+            "certificate_hash": "c7a7eed39fbac0331af636dfc02b28367aca47bc"
+          }
+        },
+        {
+          "client_id": "125362369523-etgifbvdmin2gtq6d0703c340utnlqca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8Cdx8dMaMpcCidKHFThw7hh-Qn5G-9OY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125362369523-etgifbvdmin2gtq6d0703c340utnlqca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

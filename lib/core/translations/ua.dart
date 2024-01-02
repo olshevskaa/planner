@@ -10,5 +10,13 @@ class UA {
     'emailLabelText': 'електронна пошта',
     'passwordLabelText': 'пароль',
     'confirmPasswordLabelText': 'підтвердити пароль',
+    'nameLabelText': 'ім\'я',
+    'tasks': 'Завдання',
+    'notStarted': 'Не розпочато',
+    'done': 'Виконано',
+    'projectNameLabel': 'назва проєкту',
+    'projectDescriptionLabel': 'опис проєкту',
+    'createProject': 'Створити проєкт',
+    'createTask': 'Створити завдання',
   };
 }

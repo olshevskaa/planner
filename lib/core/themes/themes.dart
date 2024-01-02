@@ -23,7 +23,8 @@ class LightTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15.0),
-        borderSide: const BorderSide(color: LightAppColors.secondary, width: 2.0),
+        borderSide:
+            const BorderSide(color: LightAppColors.secondary, width: 2.0),
       ),
     ),
     textSelectionTheme: const TextSelectionThemeData(
@@ -37,21 +38,33 @@ class LightTheme {
     ),
     textTheme: const TextTheme(
       headlineMedium: TextStyle(
-        color: Colors.black,
+        color: Color.fromARGB(255, 30, 30, 30),
         fontWeight: FontWeight.bold,
         fontFamily: 'Sans Serif',
       ),
+      titleLarge: TextStyle(
+        color: Color.fromARGB(255, 30, 30, 30),
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Open Sans',
+      ),
       titleSmall: TextStyle(
-        color: Colors.black,
+        color: Color.fromARGB(255, 30, 30, 30),
         fontWeight: FontWeight.bold,
         fontFamily: 'Open Sans',
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: LightAppColors.primary,
-      selectedItemColor: LightAppColors.iconColor,
-      unselectedItemColor: Colors.white,
-      showUnselectedLabels: false,
+        backgroundColor: LightAppColors.primary,
+        selectedItemColor: LightAppColors.iconColor,
+        unselectedItemColor: Colors.white,
+        showUnselectedLabels: false),
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.all(LightAppColors.accent),
+      side: MaterialStateBorderSide.resolveWith((states) => const BorderSide(
+            color: Colors.black87,
+            width: 1.5,
+          )
+      ),
     ),
     colorScheme: const ColorScheme.light(
       primary: LightAppColors.primary,

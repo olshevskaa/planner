@@ -40,11 +40,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (credential.user != null) {
         UserModel user = UserModel(
           id: credential.user!.uid,
-          name: name,
           email: email,
-          tasks: [],
           tasksCompleted: 0,
-          meetings: [],
           provider: 'email',
         );
 
@@ -116,11 +113,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (!doc.exists) {
         UserModel userModel = UserModel(
           id: user.user!.uid,
-          name: user.user!.displayName ?? '',
           email: user.user!.email ?? '',
-          tasks: [],
           tasksCompleted: 0,
-          meetings: [],
           provider: 'google',
         );
 

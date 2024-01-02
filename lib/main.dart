@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:planner/core/services/dependency_injection.dart';
+import 'package:planner/core/services/user_model_hive_adapter.dart';
 import 'package:planner/core/themes/theme_service.dart';
 import 'package:planner/core/themes/themes.dart';
 import 'package:planner/core/translations/app_translations.dart';
@@ -14,6 +15,7 @@ import 'package:planner/src/presentation/screens/onboarding_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(UserModelAdapter());
   await Hive.openBox('settings');
   await Firebase.initializeApp();
   initDep();

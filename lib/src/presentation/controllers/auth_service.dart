@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:planner/core/utils/routes.dart';
 import 'package:planner/src/data/models/user_model.dart';
 import 'package:planner/src/domain/usecases/auth/google_auth.dart';
@@ -32,6 +33,7 @@ class AuthService extends GetxService {
   void onInit() {
     _firebaseUser = Rx<User?>(_firebaseAuth.currentUser);
     _firebaseUser.bindStream(_firebaseAuth.authStateChanges());
+    _user = Hive.box('settings').get('user');
     super.onInit();
   }
 
@@ -49,6 +51,7 @@ class AuthService extends GetxService {
     result.fold((failure) => Get.snackbar('Error', failure.message),
         (r) {
           _user = r as UserModel;
+          Hive.box('settings').put('user', _user);
           return Get.offNamed(Routes.home);
         });
   }
@@ -57,6 +60,7 @@ class AuthService extends GetxService {
     var result = await _logout();
     result.fold((failure) => Get.snackbar('Error', failure.message), (r) {
       _user = null;
+      Hive.box('settings').put('user', null);
       Get.offAllNamed(Routes.onboard);
     });
   }
@@ -67,6 +71,7 @@ class AuthService extends GetxService {
     result.fold((failure) => Get.snackbar('Error', failure.message),
         (r) {
           _user = r as UserModel;
+          Hive.box('settings').put('user', _user);
           return Get.offNamed(Routes.home);
         });
   }
@@ -77,6 +82,7 @@ class AuthService extends GetxService {
     result.fold((failure) => Get.snackbar('Error', failure.message), (r) {
       if (r != null) {
         _user = r as UserModel;
+        Hive.box('settings').put('user', _user);
         Get.offNamed(Routes.home);
       }
     });

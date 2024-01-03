@@ -14,6 +14,7 @@ import 'package:planner/src/domain/usecases/auth/logout.dart';
 import 'package:planner/src/domain/usecases/auth/sign_up.dart';
 import 'package:planner/src/domain/usecases/task/add_task.dart';
 import 'package:planner/src/domain/usecases/task/complete_task.dart';
+import 'package:planner/src/domain/usecases/task/delete_task.dart';
 import 'package:planner/src/domain/usecases/task/get_tasks.dart';
 import 'package:planner/src/presentation/controllers/auth_service.dart';
 import 'package:planner/src/presentation/controllers/calendar_controller.dart';
@@ -40,6 +41,7 @@ void initDep() {
   Get.put(AddTask(Get.find()));
   Get.put(GetTasks(Get.find()));
   Get.put(CompleteTask(Get.find()));
+  Get.put(DeleteTask(Get.find()));
 
   Get.put(AuthService(
     Get.find(),
@@ -51,5 +53,10 @@ void initDep() {
   Get.put(ThemeService());
   Get.put(LandingPageController());
   Get.put(CalendarController());
-  Get.put(TaskController(Get.find(), Get.find(), Get.find()));
+  Get.put(TaskController(
+    Get.find(),
+    Get.find(),
+    Get.find(),
+    Get.find(),
+  ));
 }

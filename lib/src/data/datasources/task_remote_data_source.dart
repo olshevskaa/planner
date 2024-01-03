@@ -12,6 +12,7 @@ abstract class TaskRemoteDataSource {
     String taskId,
     bool value,
   );
+  Future<void> deleteTask(String userId, String taskId);
 }
 
 class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
@@ -70,6 +71,21 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
           .collection('tasks')
           .doc(taskId)
           .update({'isCompleted': value});
+    } catch (e) {
+      throw ServerException(
+          message: 'Unexpected error. Please try again', statusCode: 505);
+    }
+  }
+
+  @override
+  Future<void> deleteTask(String userId, String taskId) async {
+    try {
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('tasks')
+          .doc(taskId)
+          .delete();
     } catch (e) {
       throw ServerException(
           message: 'Unexpected error. Please try again', statusCode: 505);

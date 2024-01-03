@@ -15,4 +15,9 @@ abstract class TaskRepo {
     required String taskId,
     required bool value,
   });
+
+  ResultVoid deleteTask({
+    required String userId,
+    required String taskId,
+  });
 }

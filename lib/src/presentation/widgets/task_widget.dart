@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:planner/core/utils/dimensions.dart';
 import 'package:planner/src/data/models/task_model.dart';
 import 'package:planner/src/presentation/controllers/auth_service.dart';
 import 'package:planner/src/presentation/controllers/task_controller.dart';
@@ -21,7 +22,22 @@ class TaskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: Container(
+      child: Dismissible(
+        key: Key(task.id),
+        onDismissed: (direction) async {
+          await controller.deleteTask(authController.user!.id, task.id);
+          updateTasks();
+        },
+        background: Container(
+          padding: EdgeInsets.only(right: Dimensions.height10 * 2),
+          color: Theme.of(context).colorScheme.primary,
+          child: const Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: Icon(Icons.delete),
+          ),
+        ),
+        direction: DismissDirection.endToStart,
+        child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.tertiary,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -40,11 +56,13 @@ class TaskWidget extends StatelessWidget {
               value: task.isCompleted,
               onChanged: (value) async {
                 await controller.completeTask(
-                  authController.user!.id, task.id, value!);
-                  updateTasks();
+                    authController.user!.id, task.id, value!);
+                updateTasks();
               },
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

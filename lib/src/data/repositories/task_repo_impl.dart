@@ -47,4 +47,17 @@ class TaskRepoImpl implements TaskRepo {
       return Left(ServerFailure.fromException(e));
     }
   }
+
+  @override
+  ResultVoid deleteTask({
+    required String userId,
+    required String taskId,
+  }) async {
+    try {
+      await _taskDataSource.deleteTask(userId, taskId);
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure.fromException(e));
+    }
+  }
 }

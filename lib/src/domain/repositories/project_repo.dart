@@ -3,6 +3,7 @@ import 'package:planner/src/data/models/project_model.dart';
 
 abstract class ProjectRepo {
   ResultVoid addProject({
+    required String userId,
     required String name,
     String? description,
     String? cover,
@@ -18,5 +19,6 @@ abstract class ProjectRepo {
   ResultVoid finishProject({
     required String userId,
     required String projectId,
+    required bool value,
   });
 }

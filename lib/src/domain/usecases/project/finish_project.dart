@@ -12,6 +12,7 @@ class FinishProject extends UseCaseWithParams<void, FinishProjectParams> {
     return await _repository.finishProject(
       userId: params.userId,
       projectId: params.projectId,
+      value: params.value,
     );
   }
 }
@@ -20,8 +21,10 @@ class FinishProjectParams {
   FinishProjectParams(
     this.userId,
     this.projectId,
+    this.value,
   );
 
   final String userId;
   final String projectId;
+  final bool value;
 }

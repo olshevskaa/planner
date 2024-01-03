@@ -1,11 +1,14 @@
+import 'dart:convert';
+
 import 'package:planner/src/domain/entities/task.dart';
 
 class TaskModel extends Task {
+  final String date;
   TaskModel({
     required super.id,
     required super.title,
     required super.isCompleted,
-    required super.date,
+    required this.date,
   });
 
   factory TaskModel.fromMap(Map<String, dynamic> map) {
@@ -25,4 +28,9 @@ class TaskModel extends Task {
       'date': date,
     };
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory TaskModel.fromJson(String source) =>
+      TaskModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

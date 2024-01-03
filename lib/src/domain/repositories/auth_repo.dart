@@ -2,8 +2,6 @@ import 'package:planner/core/utils/typedef.dart';
 import 'package:planner/src/domain/entities/user.dart';
 
 abstract class AuthRepo {
-  const AuthRepo();
-
   ResultFuture<User> signUp({
     required String email,
     required String name,

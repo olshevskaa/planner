@@ -1,5 +1,3 @@
-import 'package:planner/src/domain/entities/task.dart';
-
 class User {
   final String id;
   final String email;

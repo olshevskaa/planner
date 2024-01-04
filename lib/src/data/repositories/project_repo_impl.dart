@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:planner/core/errors/failure.dart';
@@ -16,7 +18,7 @@ class ProjectRepoImpl implements ProjectRepo {
     required String userId,
     required String name,
     String? description,
-    String? cover,
+    Uint8List? cover,
   }) async {
     try {
       await _remoteDataSource.addProject(

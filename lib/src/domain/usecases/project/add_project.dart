@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:planner/core/usecase/usecase.dart';
 import 'package:planner/core/utils/typedef.dart';
 import 'package:planner/src/domain/repositories/project_repo.dart';
@@ -27,5 +29,5 @@ class AddProjectParams {
   final String userId;
   final String name;
   final String? description;
-  final String? cover;
+  final Uint8List? cover;
 }

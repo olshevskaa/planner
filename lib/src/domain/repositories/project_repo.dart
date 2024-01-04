@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:planner/core/utils/typedef.dart';
 import 'package:planner/src/data/models/project_model.dart';
 
@@ -6,7 +8,7 @@ abstract class ProjectRepo {
     required String userId,
     required String name,
     String? description,
-    String? cover,
+    Uint8List? cover,
   });
 
   ResultFuture<List<ProjectModel>> getProjects({required String userId});

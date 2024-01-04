@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:planner/src/data/models/project_model.dart';
 import 'package:planner/src/domain/usecases/project/add_project.dart';
 import 'package:planner/src/domain/usecases/project/delete_project.dart';
@@ -22,7 +25,7 @@ class ProjectController extends GetxController {
     required String userId,
     required String name,
     String? description,
-    String? cover,
+    Uint8List? cover,
   }) async {
     final result = await _addProject.call(
       AddProjectParams(
@@ -33,8 +36,8 @@ class ProjectController extends GetxController {
       ),
     );
     result.fold(
-      (failure) => printError(info: failure.message),
-      (success) {},
+      (failure) => Get.snackbar('Error', failure.message),
+      (success) => Get.back(),
     );
   }
 
@@ -49,7 +52,7 @@ class ProjectController extends GetxController {
       ),
     );
     result.fold(
-      (failure) => printError(info: failure.message),
+      (failure) => Get.snackbar('Error', failure.message),
       (success) {},
     );
   }
@@ -67,12 +70,12 @@ class ProjectController extends GetxController {
       ),
     );
     result.fold(
-      (failure) => printError(info: failure.message),
+      (failure) => Get.snackbar('Error', failure.message),
       (success) {},
     );
   }
 
-  Future<List<ProjectModel>?> getProjects({required String userId}) async {
+  Future<List<ProjectModel>> getProjects({required String userId}) async {
     final result = await _getProjects.call(
       GetProjectParams(
         userId,
@@ -83,7 +86,20 @@ class ProjectController extends GetxController {
         Get.snackbar('Error', failure.message);
         return [];
       },
-      (projects) => projects,
+      (projects) {
+        return projects;
+      },
     );
+  }
+
+  Future<Uint8List?> pickImage(ImageSource source) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? file = await picker.pickImage(source: source);
+
+    if (file != null) {
+      return file.readAsBytes();
+    }
+
+    return null;
   }
 }

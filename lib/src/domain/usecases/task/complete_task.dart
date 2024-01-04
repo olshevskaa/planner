@@ -3,7 +3,7 @@ import 'package:planner/core/utils/typedef.dart';
 import 'package:planner/src/domain/repositories/task_repo.dart';
 
 class CompleteTask extends UseCaseWithParams<void, CompleteTaskParams> {
-  TaskRepo _repository;
+  final TaskRepo _repository;
 
   CompleteTask(this._repository);
 

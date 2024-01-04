@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:planner/core/errors/exceptions.dart';
 import 'package:planner/src/data/models/project_model.dart';
@@ -9,7 +12,7 @@ abstract class ProjectRemoteDataSource {
     required String userId,
     required String name,
     String? description,
-    String? cover,
+    Uint8List? cover,
   });
 
   Future<List<ProjectModel>> getProjects({required String userId});
@@ -28,33 +31,41 @@ abstract class ProjectRemoteDataSource {
 
 class ProjectRemoteDataSourceImpl implements ProjectRemoteDataSource {
   final FirebaseFirestore _firestore;
+  final FirebaseStorage _storage;
 
-  ProjectRemoteDataSourceImpl(this._firestore);
+  ProjectRemoteDataSourceImpl(this._firestore, this._storage);
 
   @override
   Future<void> addProject({
     required String userId,
     required String name,
     String? description,
-    String? cover,
+    Uint8List? cover,
   }) async {
     try {
-    final String uid = const Uuid().v4();
+      final String uid = const Uuid().v4();
+      var coverUrl = '';
 
-    final project = ProjectModel(
-      id: uid,
-      name: name,
-      description: description,
-      cover: cover,
-      finished: false,
-      tasks: [],
-    ).toMap();
+      if (cover != null) {
+        TaskSnapshot snap =
+            await _storage.ref().child(userId).child(uid).putData(cover);
+        coverUrl = await snap.ref.getDownloadURL();
+      }
 
-    await _firestore
-        .collection('users')
-        .doc(userId)
-        .collection('projects')
-        .add(project);
+      final project = ProjectModel(
+        id: uid,
+        name: name,
+        description: description,
+        cover: coverUrl,
+        finished: false,
+        tasks: [],
+      ).toMap();
+
+      await _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('projects')
+          .add(project);
     } catch (e) {
       printError(info: e.toString());
       throw const ServerException(

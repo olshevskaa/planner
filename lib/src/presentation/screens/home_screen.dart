@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 100),
     );
     animation =
         Tween<double>(begin: 0, end: pi / 4).animate(animationController);
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
-      TasksScreen(),
+      const TasksScreen(),
       AddTaskScreen(),
       Container(
         child: Center(
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               currentIndex: controller.index.value,
               onTap: performAction,
               items: [
-                BottomNavigationBarItem(
+                const BottomNavigationBarItem(
                   icon: Icon(Icons.task),
                   label: 'Tasks',
                 ),
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         angle: animation.value,
                         child: ScaleTransition(
                           scale: scaleAnimation,
-                          child: Icon(Icons.add),
+                          child: const Icon(Icons.add),
                         ),
                       );
                     },
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   ),
                   label: 'Add',
                 ),
-                BottomNavigationBarItem(
+                const BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
                   label: 'Settings',
                 ),

@@ -1,3 +1,3 @@
-# test_app
+# planner
 
 A new Flutter project.

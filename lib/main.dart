@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
           locale == 'en' ? const Locale('en', 'US') : const Locale('uk', 'UA'),
         theme: darkMode ? DarkTheme.orangeTheme : LightTheme.purpleTheme,
         home: Scaffold(
-          body: authService.isLoggedIn ? HomeScreen() : OnboardingScreen(),
+          body: authService.isLoggedIn ? const HomeScreen() : OnboardingScreen(),
         ),
       );
   }

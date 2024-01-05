@@ -55,9 +55,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  ResultFuture<UserModel> signUp({required String email, required String name, required String password}) async {
+  ResultFuture<UserModel> signUp({required String email, required String password}) async {
     try {
-      UserModel user =  await _authDataSource.signUpWithEmailAndPassword(email, name, password);
+      UserModel user =  await _authDataSource.signUpWithEmailAndPassword(email, password);
       return Right(user);
     } on FirebaseAuthException catch (e) {
       return Left(FirebaseFailure.fromException(e));

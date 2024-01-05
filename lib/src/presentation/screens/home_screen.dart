@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:planner/core/utils/dimensions.dart';
 import 'package:planner/src/presentation/controllers/landing_page_controller.dart';
 import 'package:planner/src/presentation/screens/add_task_screen.dart';
+import 'package:planner/src/presentation/screens/settings_screen.dart';
 import 'package:planner/src/presentation/screens/tasks_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   void performAction(index) async {
     if (index == 1) {
-        await animationController.forward();
-      } else {
-        await animationController.reverse();
-      }
-      controller.changeIndex(index);
+      await animationController.forward();
+    } else {
+      await animationController.reverse();
+    }
+    controller.changeIndex(index);
   }
 
   @override
@@ -52,17 +53,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final List<Widget> screens = [
       const TasksScreen(),
-      AddTaskScreen(),
-      Container(
-        child: Center(
-          child: Text('Settings'),
-        ),
-      ),
+      const AddTaskScreen(),
+      SettingsScreen(),
     ];
 
     return Obx(
       () => Scaffold(
-        body: screens[controller.index.value],
+        body: SafeArea(
+          child: screens[controller.index.value],
+        ),
         bottomNavigationBar: Container(
           padding: EdgeInsets.all(Dimensions.height15),
           child: ClipRRect(
@@ -73,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               items: [
                 const BottomNavigationBarItem(
                   icon: Icon(Icons.task),
-                  label: 'Tasks',
+                  label: 'tasksBottomBar',
                 ),
                 BottomNavigationBarItem(
                   icon: AnimatedBuilder(
@@ -87,13 +86,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         ),
                       );
                     },
-                    // child: Icon(Icons.add),
                   ),
-                  label: 'Add',
+                  label: 'addBottomBar',
                 ),
                 const BottomNavigationBarItem(
                   icon: Icon(Icons.settings),
-                  label: 'Settings',
+                  label: 'settingsBottomBar',
                 ),
               ],
             ),

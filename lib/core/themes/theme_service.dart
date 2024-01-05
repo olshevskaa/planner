@@ -7,14 +7,23 @@ class ThemeService extends GetxService {
   final _key = 'isDarkMode';
   late bool _darkTheme;
 
+  String get theme => _darkTheme ? 'dark' : 'light';
+
   @override
   void onInit() {
     super.onInit();
     _darkTheme = _box.get(_key, defaultValue: false);
   }
 
-  void switchTheme() {
-    _darkTheme = !_darkTheme;
+  void switchTheme(String? theme) {
+    if (theme != null) {
+      _darkTheme = theme == 'dark';
+      if (_darkTheme) {
+        Get.changeTheme(DarkTheme.orangeTheme);
+      } else {
+        Get.changeTheme(LightTheme.purpleTheme);
+      }
+    }
     _box.put(_key, _darkTheme);
 
     if (_darkTheme) {

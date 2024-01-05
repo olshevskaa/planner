@@ -12,7 +12,6 @@ class SignUp extends UseCaseWithParams<User, SignUpParams> {
   ResultFuture<User> call(SignUpParams params) async =>
       await _repository.signUp(
         email: params.email,
-        name: params.name,
         password: params.password,
       );
 
@@ -23,19 +22,16 @@ class SignUp extends UseCaseWithParams<User, SignUpParams> {
   }) async =>
       _repository.signUp(
         email: email,
-        name: name,
         password: password,
       );
 }
 
 class SignUpParams {
   final String email;
-  final String name;
   final String password;
 
   SignUpParams({
     required this.email,
-    required this.name,
     required this.password,
   });
 }

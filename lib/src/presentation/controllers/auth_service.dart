@@ -39,26 +39,24 @@ class AuthService extends GetxService {
 
   Future<void> signUp(
     String email,
-    String name,
     String password,
   ) async {
     var result = await _signUp(SignUpParams(
       email: email,
-      name: name,
       password: password,
     ));
 
-    result.fold((failure) => Get.snackbar('Error', failure.message),
+    result.fold((failure) => Get.snackbar('error'.tr, failure.message),
         (r) {
           _user = r as UserModel;
           Hive.box('settings').put('user', _user);
-          return Get.offNamed(Routes.home);
+          Get.offAllNamed(Routes.home);
         });
   }
 
   Future<void> logOut() async {
     var result = await _logout();
-    result.fold((failure) => Get.snackbar('Error', failure.message), (r) {
+    result.fold((failure) => Get.snackbar('error'.tr, failure.message), (r) {
       _user = null;
       Hive.box('settings').put('user', null);
       Get.offAllNamed(Routes.onboard);
@@ -68,22 +66,22 @@ class AuthService extends GetxService {
   Future<void> signIn(String email, String password) async {
     var result = await _login(LoginParams(email: email, password: password));
 
-    result.fold((failure) => Get.snackbar('Error', failure.message),
+    result.fold((failure) => Get.snackbar('error'.tr, failure.message),
         (r) {
           _user = r as UserModel;
           Hive.box('settings').put('user', _user);
-          return Get.offNamed(Routes.home);
+          Get.offAllNamed(Routes.home);
         });
   }
 
   Future<void> googleAuth() async {
     var result = await _googleAuth();
 
-    result.fold((failure) => Get.snackbar('Error', failure.message), (r) {
+    result.fold((failure) => Get.snackbar('error'.tr, failure.message), (r) {
       if (r != null) {
         _user = r as UserModel;
         Hive.box('settings').put('user', _user);
-        Get.offNamed(Routes.home);
+        Get.offAllNamed(Routes.home);
       }
     });
   }

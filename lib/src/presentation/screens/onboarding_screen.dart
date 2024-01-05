@@ -21,18 +21,6 @@ class OnboardingScreen extends StatelessWidget {
           SizedBox(
             height: Dimensions.screenHeight - Dimensions.onboardTextArea,
             width: double.infinity,
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () => localeService.switchLocale(),
-                  icon: Icon(Icons.language),
-                ),
-                IconButton(
-                  onPressed: () => themeService.switchTheme(),
-                  icon: Icon(Icons.lightbulb),
-                ),
-              ],
-            ),
           ),
           Container(
             decoration: BoxDecoration(

@@ -21,6 +21,10 @@ class LightTheme {
           width: 2.0,
         ),
       ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15.0),
+        borderSide: const BorderSide(color: Colors.red),
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15.0),
         borderSide:
@@ -38,17 +42,17 @@ class LightTheme {
     ),
     textTheme: const TextTheme(
       headlineMedium: TextStyle(
-        color: Color.fromARGB(255, 30, 30, 30),
+        color: Color.fromARGB(180, 0, 0, 0),
         fontWeight: FontWeight.bold,
         fontFamily: 'Sans Serif',
       ),
       titleLarge: TextStyle(
-        color: Color.fromARGB(255, 30, 30, 30),
+        color: Color.fromARGB(180, 0, 0, 0),
         fontWeight: FontWeight.bold,
         fontFamily: 'Open Sans',
       ),
       titleSmall: TextStyle(
-        color: Color.fromARGB(255, 30, 30, 30),
+        color: Color.fromARGB(180, 0, 0, 0),
         fontWeight: FontWeight.bold,
         fontFamily: 'Open Sans',
       ),
@@ -63,8 +67,7 @@ class LightTheme {
       side: MaterialStateBorderSide.resolveWith((states) => const BorderSide(
             color: Colors.black87,
             width: 1.5,
-          )
-      ),
+          )),
     ),
     colorScheme: const ColorScheme.light(
       primary: LightAppColors.primary,
@@ -91,6 +94,10 @@ class DarkTheme {
         color: DarkAppColors.secondary,
         width: 2.0,
       ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15.0),
+        borderSide: const BorderSide(color: Colors.red),
+      ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15.0),
         borderSide: const BorderSide(
@@ -114,23 +121,40 @@ class DarkTheme {
     ),
     textTheme: const TextTheme(
       headlineMedium: TextStyle(
-        color: Colors.white,
+        color: Colors.white70,
         fontWeight: FontWeight.bold,
         fontFamily: 'Sans Serif',
       ),
-      titleSmall: TextStyle(
-        color: Colors.white,
+      titleLarge: TextStyle(
+        color: Colors.white70,
         fontWeight: FontWeight.bold,
         fontFamily: 'Open Sans',
       ),
+      titleSmall: TextStyle(
+        color: Colors.white70,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Open Sans',
+      ),
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: DarkAppColors.primary,
+        selectedItemColor: DarkAppColors.iconColor,
+        unselectedItemColor: Colors.black,
+        showUnselectedLabels: false),
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.all(DarkAppColors.accent),
+      side: MaterialStateBorderSide.resolveWith((states) => const BorderSide(
+            color: Colors.white70,
+            width: 1.5,
+          )),
     ),
     colorScheme: const ColorScheme.dark(
       primary: DarkAppColors.primary,
       secondary: DarkAppColors.secondary,
       tertiary: DarkAppColors.accent,
-      onPrimary: Colors.white,
-      onSecondary: Colors.white,
-      onBackground: Colors.white60,
+      onPrimary: Colors.white70,
+      onSecondary: Colors.white70,
+      onBackground: Colors.white70,
     ),
   );
 }

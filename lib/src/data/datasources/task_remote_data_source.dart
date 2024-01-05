@@ -39,7 +39,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
           .set(task.toMap());
     } catch (e) {
       throw ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 
@@ -57,13 +57,12 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
     } catch (e) {
       printError(info: e.toString());
       throw ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 
   @override
   Future<void> completeTask(String userId, String taskId, bool value) async {
-    print(value);
     try {
       await _firestore
           .collection('users')
@@ -73,7 +72,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
           .update({'isCompleted': value});
     } catch (e) {
       throw ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 
@@ -88,7 +87,7 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
           .delete();
     } catch (e) {
       throw ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 }

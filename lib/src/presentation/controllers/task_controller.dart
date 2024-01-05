@@ -31,15 +31,15 @@ class TaskController extends GetxController {
     );
 
     result.fold(
-        (failure) => Get.snackbar('Error', failure.message), (success) {});
+        (failure) => Get.snackbar('error'.tr, failure.message), (success) {});
   }
 
   Future<List<TaskModel>> getTasks(String userId) async {
-    var result = await _getTasks(userId);
+    var result = await _getTasks(GetTasksParams(userId));
 
     return result.fold(
       (failure) {
-        Get.snackbar('Error', failure.message);
+        Get.snackbar('error'.tr, failure.message);
         return [];
       },
       (list) => list as List<TaskModel>,
@@ -50,13 +50,13 @@ class TaskController extends GetxController {
     var result = await _completeTask(CompleteTaskParams(userId, taskId, value));
 
     result.fold(
-        (failure) => Get.snackbar('Error', failure.message), (success) {});
+        (failure) => Get.snackbar('error'.tr, failure.message), (success) {});
   }
 
   Future<void> deleteTask(String userId, String taskId) async {
     var result = await _deleteTask(DeleteTaskParams(userId, taskId));
     result.fold(
-      (failure) => Get.snackbar('Error', failure.message),
+      (failure) => Get.snackbar('error'.tr, failure.message),
       (success) {},
     );
   }

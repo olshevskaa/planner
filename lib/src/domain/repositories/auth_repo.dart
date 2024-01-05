@@ -4,7 +4,6 @@ import 'package:planner/src/domain/entities/user.dart';
 abstract class AuthRepo {
   ResultFuture<User> signUp({
     required String email,
-    required String name,
     required String password,
   });
 

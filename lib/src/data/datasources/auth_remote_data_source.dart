@@ -13,7 +13,6 @@ abstract class AuthRemoteDataSource {
 
   Future<UserModel> signUpWithEmailAndPassword(
     String email,
-    String name,
     String password,
   );
 
@@ -31,7 +30,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> signUpWithEmailAndPassword(
     String email,
-    String name,
     String password,
   ) async {
     try {
@@ -52,15 +50,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
         return user;
       } else {
-        throw const ServerException(
-            message: 'Unexpected error. Please try again', statusCode: 505);
+        throw ServerException(
+            message: 'unexpectedError'.tr, statusCode: 505);
       }
     } on FirebaseAuthException {
       rethrow;
     } catch (e) {
       printError(info: e.toString());
-      throw const ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+      throw ServerException(
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 
@@ -77,15 +75,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
             .get();
         return UserModel.fromMap(snapshot.data()! as Map<String, dynamic>);
       } else {
-        throw const ServerException(
-            message: 'Unexpected error. Please try again', statusCode: 505);
+        throw ServerException(
+            message: 'unexpectedError'.tr, statusCode: 505);
       }
     } on FirebaseAuthException {
       rethrow;
     } catch (e) {
       printError(info: e.toString());
-      throw const ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+      throw ServerException(
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 
@@ -130,8 +128,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       rethrow;
     } catch (e) {
       printError(info: e.toString());
-      throw const ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+      throw ServerException(
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 
@@ -150,8 +148,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       rethrow;
     } catch (e) {
       printError(info: e.toString());
-      throw const ServerException(
-          message: 'Unexpected error. Please try again', statusCode: 505);
+      throw ServerException(
+          message: 'unexpectedError'.tr, statusCode: 505);
     }
   }
 }

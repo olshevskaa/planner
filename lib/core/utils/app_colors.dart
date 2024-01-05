@@ -12,4 +12,5 @@ class DarkAppColors {
   static const primary = Color(0xFFab8750);
   static const secondary = Color.fromARGB(255, 86, 73, 54);
   static const accent = Color.fromARGB(255, 155, 133, 73);
+  static const iconColor = Color.fromARGB(255, 54, 43, 16);
 }
